@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <!--v-bind:title 可以设置鼠标悬停位置显示信息-->
+    <span v-bind:title="msg">
+        悬停查看信息
+    </span>
+</div>
+
+<script src="./lib/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg: '悬停后查看到的信息'
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <ol>
+        <li v-for="array in arrays">
+            {{ array.text }}
+        </li>
+    </ol>
+</div>
+<script src="./lib/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            arrays: [
+                {text: '学习才能根治菜'},
+                {text: '菜不是你的错'},
+                {text: '不学习才是错'}
+            ]
+        }
+    });
+</script>
+</body>
+</html>
