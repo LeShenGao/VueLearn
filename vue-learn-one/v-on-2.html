@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-on 点击按钮时输出一句话</title>
+</head>
+<body>
+<div id="app">
+    <p>{{ message }}</p>
+    <!--效果一-->
+    <!--<button v-on:click="onclickChange">按钮</button>-->
+
+    <!--效果二： v-on 可以缩写为 @-->
+    <button @click="onclickChange">按钮</button>
+</div>
+<script src="./lib/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            message: ''
+        },
+        methods: {
+            onclickChange: function () {
+                this.message = '点击按钮时显示';
+            }
+        }
+    });
+</script>
+</body>
+</html>
