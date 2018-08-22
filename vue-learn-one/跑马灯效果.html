@@ -14,28 +14,31 @@
 
 <script src="./lib/vue.js"></script>
 <script>
-    let t1;
     let vm = new Vue({
         el: '#app',
         data: {
-            message: '浪起来，跑马灯~~！！'
+            message: '浪起来，跑马灯~~！！',
+            //定时器 id ，起初是在 Vue 实例外部定义，现在使用 Vue 操作，尽可能使用 Vue 定义的内部变量进行数据操作
+            intervalId: null
         },
         methods: {
             start() {
-                this.clearInterval(t1);
+                //解决开始按钮重复点击后导致定时器 "加速" 问题
+                // if 可以在这里做判空的作用，不为空的使用就是 true
+                if (this.intervalId) return;
                 // 使用 => 来替代 function ，可以直接在定时器中获取到 this 对象，而不是出现 this 指向 window 的问题
-                t1 = setInterval(() => {
+                this.intervalId = setInterval(() => {
                     let startStr = this.message.substring(0, 1);
                     let endStr = this.message.substring(1);
                     this.message = endStr + startStr;
                 }, 400);
             },
             end() {
-                this.clearInterval(t1);
+                //使用自带的方法，即可停止定时器
+                clearInterval(this.intervalId);
+                //定时器关闭后，初始化定时器 id 的值，方便下次点击开始按钮时继续跑马灯~
+                this.intervalId = null;
             },
-            clearInterval(object) {
-                window.clearInterval(object)
-            }
         }
     });
 </script>
