@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 实现跑马灯效果</title>
+</head>
+<body>
+
+<div id="app">
+    <input type="button" value="开始" @click="start">
+    <input type="button" value="停止" @click="end">
+    <p>{{ message }}</p>
+</div>
+
+<script src="./lib/vue.js"></script>
+<script>
+    let t1;
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            message: '浪起来，跑马灯~~！！'
+        },
+        methods: {
+            start() {
+                let _this = this;
+                _this.clearInterval(t1);
+                t1 = setInterval(function () {
+                    let startStr = _this.message.substring(0, 1);
+                    let endStr = _this.message.substring(1);
+                    _this.message = endStr + startStr;
+                }, 400);
+            },
+            end() {
+                this.clearInterval(t1);
+            },
+            clearInterval(object){
+                window.clearInterval(object)
+            }
+        }
+    });
+</script>
+</body>
+</html>
