@@ -17,12 +17,22 @@
         当点击 inner 的情况下，不会触发 button 按钮的事件，因为 button 是在 inner 内部，则不受影响
     -->
     <!--<div class="inner" @click="inner">-->
-        <!--<input type="button" @click="button" value="点击触发事件冒泡">-->
+    <!--<input type="button" @click="button" value="点击触发事件冒泡">-->
     <!--</div>-->
 
     <!--解决冒泡事件  .stop 阻止事件冒泡    -->
     <div class="inner" @click="inner">
         <input type="button" @click.stop="button" value="点击触发事件冒泡">
+    </div>
+
+    <!--a 默认事件是跳转到百度-->
+    <!--<div>-->
+    <!--<a href="http://www.baidu.com" @click="a">默认事件跳转百度</a>-->
+    <!--</div>-->
+
+    <!--去除 a 默认的事件  .prevent 阻止事件默认行为-->
+    <div>
+        <a href="http://www.baidu.com" @click.prevent="a">默认事件跳转百度</a>
     </div>
 </div>
 
@@ -37,6 +47,9 @@
             },
             button() {
                 console.log("button 事件触发")
+            },
+            a() {
+                console.log("a 事件触发")
             }
         }
     });
