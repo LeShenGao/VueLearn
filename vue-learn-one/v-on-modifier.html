@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-on 事件修饰符</title>
+    <style>
+        .inner {
+            height: 50px;
+            background: aqua;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <!--下面代码会触发事件冒泡：事件冒泡就是触发了当前事件，但是会继续触发当前事件所处范围内的其他事件
+        当点击 inner 的情况下，不会触发 button 按钮的事件，因为 button 是在 inner 内部，则不受影响
+    -->
+    <!--<div class="inner" @click="inner">-->
+        <!--<input type="button" @click="button" value="点击触发事件冒泡">-->
+    <!--</div>-->
+
+    <!--解决冒泡事件  .stop 阻止事件冒泡    -->
+    <div class="inner" @click="inner">
+        <input type="button" @click.stop="button" value="点击触发事件冒泡">
+    </div>
+</div>
+
+<script src="./lib/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {
+            inner() {
+                console.log("inner 事件触发")
+            },
+            button() {
+                console.log("button 事件触发")
+            }
+        }
+    });
+</script>
+</body>
+</html>
